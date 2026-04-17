@@ -619,6 +619,152 @@
       color: rgba(255,255,255,0.4);
       margin-top: 8px;
     }
+
+    /* 往期盲盒揭晓区块 */
+    .past-section {
+      margin-top: 28px;
+    }
+
+    /* 可点击的顶部栏 */
+    .past-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(255,215,0,0.07);
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .past-header:active {
+      background: rgba(255,215,0,0.13);
+    }
+
+    .past-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      flex-shrink: 0;
+    }
+
+    .past-header-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .past-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFD700;
+      letter-spacing: 0.5px;
+    }
+
+    .past-subtitle {
+      font-size: 12px;
+      color: rgba(255,215,0,0.6);
+      margin-top: 2px;
+    }
+
+    /* 缩略图横向滚动条（默认可见） */
+    .past-thumbs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 12px 0 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .past-thumbs::-webkit-scrollbar { display: none; }
+
+    .past-thumbs img {
+      width: 64px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .past-thumbs img:first-child {
+      border-color: rgba(255,215,0,0.5);
+    }
+
+    /* 箭头指示展开状态 */
+    .past-arrow {
+      font-size: 16px;
+      color: rgba(255,215,0,0.7);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .past-section.open .past-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* 展开内容区：平滑展开动画 */
+    .past-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+
+    .past-section.open .past-expand {
+      max-height: 3000px;
+    }
+
+    .past-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+    .past-item {
+      background: rgba(255,215,0,0.05);
+      border: 1px solid rgba(255,215,0,0.15);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .past-item-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFD700;
+    }
+
+    .past-item-title::before {
+      content: '✨';
+      font-size: 13px;
+    }
+
+    .past-item-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 0 10px 12px;
+    }
+
+    .past-item-photos img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -1133,6 +1279,72 @@
         </div>
       </div>
     </div>
+
+    <!-- 往期盲盒揭晓 -->
+    <div class="past-section" id="pastSection">
+      <!-- 点击展开/收起的顶部栏 -->
+      <div class="past-header" onclick="togglePast()">
+        <div class="past-icon">🎁</div>
+        <div class="past-header-text">
+          <div class="past-title">往期盲盒（持续更新...）</div>
+          <div class="past-thumbs">
+            <img src="往期盲盒揭晓/129套装01.jpg" alt="">
+            <img src="往期盲盒揭晓/129套装02.jpg" alt="">
+            <img src="往期盲盒揭晓/法式蕾丝碎花半身群01.jpg" alt="">
+            <img src="往期盲盒揭晓/法式蕾丝碎花半身群02.jpg" alt="">
+            <img src="往期盲盒揭晓/复古慵懒轻亚亨利领条纹正肩短袖T恤01.jpg" alt="">
+            <img src="往期盲盒揭晓/复古慵懒轻亚亨利领条纹正肩短袖T恤02.jpg" alt="">
+            <img src="往期盲盒揭晓/美式复古一字肩长袖T恤01.jpg" alt="">
+            <img src="往期盲盒揭晓/美式复古一字肩长袖T恤02.jpg" alt="">
+          </div>
+        </div>
+        <div class="past-arrow">▼</div>
+      </div>
+
+      <!-- 展开内容 -->
+      <div class="past-expand">
+        <div class="past-items-list">
+
+          <!-- 往期款 1：129套装 -->
+          <div class="past-item">
+            <div class="past-item-title">¥129 超值套装</div>
+            <div class="past-item-photos">
+              <img src="往期盲盒揭晓/129套装01.jpg" alt="129套装效果1" loading="lazy">
+              <img src="往期盲盒揭晓/129套装02.jpg" alt="129套装效果2" loading="lazy">
+            </div>
+          </div>
+
+          <!-- 往期款 2：法式蕾丝碎花半身裙 -->
+          <div class="past-item">
+            <div class="past-item-title">法式蕾丝碎花半身裙</div>
+            <div class="past-item-photos">
+              <img src="往期盲盒揭晓/法式蕾丝碎花半身群01.jpg" alt="法式蕾丝碎花半身裙效果1" loading="lazy">
+              <img src="往期盲盒揭晓/法式蕾丝碎花半身群02.jpg" alt="法式蕾丝碎花半身裙效果2" loading="lazy">
+            </div>
+          </div>
+
+          <!-- 往期款 3：复古慵懒亨利领条纹正肩短袖T恤 -->
+          <div class="past-item">
+            <div class="past-item-title">复古慵懒亨利领条纹正肩短袖T恤</div>
+            <div class="past-item-photos">
+              <img src="往期盲盒揭晓/复古慵懒轻亚亨利领条纹正肩短袖T恤01.jpg" alt="复古条纹T恤效果1" loading="lazy">
+              <img src="往期盲盒揭晓/复古慵懒轻亚亨利领条纹正肩短袖T恤02.jpg" alt="复古条纹T恤效果2" loading="lazy">
+            </div>
+          </div>
+
+          <!-- 往期款 4：美式复古一字肩长袖T恤 -->
+          <div class="past-item">
+            <div class="past-item-title">美式复古一字肩长袖T恤</div>
+            <div class="past-item-photos">
+              <img src="往期盲盒揭晓/美式复古一字肩长袖T恤01.jpg" alt="美式复古一字肩T恤效果1" loading="lazy">
+              <img src="往期盲盒揭晓/美式复古一字肩长袖T恤02.jpg" alt="美式复古一字肩T恤效果2" loading="lazy">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- 配送与售后 -->
@@ -1367,6 +1579,12 @@ ${note ? '📝 其他备注：' + note : ''}
         closeModal();
       }
     });
+
+    // 往期盲盒展开/收起
+    function togglePast() {
+      const section = document.getElementById('pastSection');
+      section.classList.toggle('open');
+    }
   </script>
 </body>
 </html>
